@@ -5,33 +5,37 @@ function countProfit(shoppers) {
                    ];
 
   // you can only write your code here!
-  var arrList = []
+  if (shoppers.length == 0) {
+    return "[]"
+  } else {
+    var arrList = []
 
-  for (var i = 0; i < listBarang.length; i++) {
-    var objProduct = {}
-    var arrShoppers = []
-    var stock = listBarang[i][2]
-    var price = listBarang[i][1]
-    var profit = 0
+    for (var i = 0; i < listBarang.length; i++) {
+      var objProduct = {}
+      var arrShoppers = []
+      var stock = listBarang[i][2]
+      var price = listBarang[i][1]
+      var profit = 0
 
-    for (var j = 0; j < shoppers.length; j++) {
+      for (var j = 0; j < shoppers.length; j++) {
 
-      if (shoppers[j].product == objProduct.product && shoppers[j].amount <= stock) {
-        arrShoppers.push(shoppers[j].name)
-        stock -= shoppers[j].amount
-        profit += (shoppers[j].amount * price )
+        if (shoppers[j].product == objProduct.product && shoppers[j].amount <= stock) {
+          arrShoppers.push(shoppers[j].name)
+          stock -= shoppers[j].amount
+          profit += (shoppers[j].amount * price )
+        }
+
+        objProduct.product = listBarang[i][0]
+        objProduct.shoppers = arrShoppers
+        objProduct.leftOver = stock
+        objProduct.totalProfit = profit
       }
 
-      objProduct.product = listBarang[i][0]
-      objProduct.shoppers = arrShoppers
-      objProduct.leftOver = stock
-      objProduct.totalProfit = profit
+      arrList.push(objProduct)
     }
 
-    arrList.push(objProduct)
+    return arrList
   }
-
-  return arrList
 }
 
 // TEST CASES
@@ -82,5 +86,4 @@ console.log(countProfit([{name: 'Windi', product: 'Sepatu Naiki', amount: 5}]));
 //     leftOver: 1,
 //     totalProfit: 0 } ]
 
-
-// console.log(countProfit([])); //[]
+console.log(countProfit([])); //[]
