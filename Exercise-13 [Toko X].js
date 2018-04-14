@@ -19,7 +19,7 @@ function countProfit(shoppers) {
 
       for (var j = 0; j < shoppers.length; j++) {
 
-        if (shoppers[j].product == objProduct.product && shoppers[j].amount <= stock) {
+        if (shoppers[j].product == listBarang[i][0] && shoppers[j].amount <= stock) {
           arrShoppers.push(shoppers[j].name)
           stock -= shoppers[j].amount
           profit += (shoppers[j].amount * price )
